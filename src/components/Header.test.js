@@ -11,9 +11,9 @@ describe("header", () => {
     render(<Header />);
     const searchBarElement = screen.getByTestId("searchBar");
     expect(searchBarElement).toBeInTheDocument();
-    const guestsElement = searchBarElement.getByPlaceholderText("Add guests");
+    const guestsElement = screen.getByPlaceholderText("Add guests");
     expect(guestsElement).toBeInTheDocument();
-    const locationElement = searchBarElement.getByPlaceholderText("Finland");
+    const locationElement = screen.getByPlaceholderText("Choose location");
     expect(locationElement).toBeInTheDocument();
   });
   test("there is a search bar with box shadow", () => {
@@ -23,11 +23,10 @@ describe("header", () => {
       "box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1)"
     );
   });
-  test("there is a red search icon", () => {
+  test("there is a search icon", () => {
     render(<Header />);
     const buttonElement = screen.getByTestId("searchIcon");
     expect(buttonElement).toBeInTheDocument();
-    expect(buttonElement).toHaveStyle("color: #EB5757");
   });
   test("search icon is red", () => {
     render(<Header />);
