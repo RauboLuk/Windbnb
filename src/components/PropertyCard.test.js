@@ -18,7 +18,7 @@ describe("Property card", () => {
   test("there is a picture", () => {
     render(<PropertyCard location={location} />);
     const propertyElement = screen.getByTestId("img");
-    expect(propertyElement.prop("src")).toEqual(location.photo);
+    expect(propertyElement).toHaveAttribute('src', location.photo);
   });
   test("there is an alt to a picture", () => {
     render(<PropertyCard location={location} />);
@@ -27,22 +27,22 @@ describe("Property card", () => {
   });
   test("there is a super host badge", () => {
     render(<PropertyCard location={{ ...location, superHost: true }} />);
-    const propertyElement = screen.getByText("Super host");
+    const propertyElement = screen.getByText("SUPER HOST");
     expect(propertyElement).toBeInTheDocument();
   });
   test("there isn't a super host badge", () => {
     render(<PropertyCard location={location} />);
-    const propertyElement = screen.queryByText("Super host");
+    const propertyElement = screen.queryByTestId("superHost");
     expect(propertyElement).not.toBeInTheDocument();
   });
   test("there is a title", () => {
     render(<PropertyCard location={location} />);
-    const propertyElement = screen.queryByText(location.title);
+    const propertyElement = screen.getByText(location.title);
     expect(propertyElement).toBeInTheDocument();
   });
   test("there is a rating", () => {
     render(<PropertyCard location={location} />);
-    const propertyElement = screen.queryByText(location.rating);
+    const propertyElement = screen.getByText(location.rating);
     expect(propertyElement).toBeInTheDocument();
   });
   test("there is a star icon", () => {
@@ -50,28 +50,23 @@ describe("Property card", () => {
     const propertyElement = screen.getByTestId("starIcon");
     expect(propertyElement).toBeInTheDocument();
   });
-  test("star icon is red", () => {
-    render(<PropertyCard location={location} />);
-    const propertyElement = screen.getByTestId("starIcon");
-    expect(propertyElement).toHaveStyle("color: #EB5757");
-  });
   test("there is a type", () => {
     render(<PropertyCard location={location} />);
-    const propertyElement = screen.queryByText(location.type);
+    const propertyElement = screen.getByText(location.type);
     expect(propertyElement).toBeInTheDocument();
   });
   test("there is a type with beds", () => {
-    render(<PropertyCard location={{ location, beds: 2 }} />);
-    const propertyElement = screen.queryByText(
-      `${location.type} . ${location.beds} beds`
+    render(<PropertyCard location={{ ...location, beds: 2 }} />);
+    const propertyElement = screen.getByText(
+      `${location.type} . 2 beds`
     );
-    expect(propertyElement).toHaveStyle("color: #EB5757");
+    expect(propertyElement).toBeInTheDocument();
   });
   test("there is a correct plural for one bed", () => {
-    render(<PropertyCard location={{ location, beds: 1 }} />);
-    const propertyElement = screen.queryByText(
-      `${location.type} . ${location.beds} bed`
+    render(<PropertyCard location={{ ...location, beds: 1 }} />);
+    const propertyElement = screen.getByText(
+      `${location.type} . 1 bed`
     );
-    expect(propertyElement).toHaveStyle("color: #EB5757");
+    expect(propertyElement).toBeInTheDocument();
   });
 });
