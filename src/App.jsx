@@ -12,7 +12,11 @@ const App = () => {
       <Stays country={data[0].country} stays={12} />
       <PropertiesList properties={data} />
       <Footer />
-      <FilterDrawer isModalOpen={false} location={{ country: "Finland", city: "Helsinki" }} />
+      <FilterDrawer
+        isModalOpen={!false}
+        location={{ country: "Finland", city: "Helsinki" }}
+        locations={data}
+      />
     </div>
   );
 };
