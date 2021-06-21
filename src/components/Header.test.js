@@ -21,9 +21,9 @@ describe("header", () => {
     const buttonElement = screen.getByTestId("searchIcon");
     expect(buttonElement).toBeInTheDocument();
   });
-  test("calls openSearch prop when searchBar clicked", () => {
+  test("calls openDrawer prop when searchBar clicked", () => {
     const handleClick = jest.fn();
-    render(<Header openSearch={handleClick} />);
+    render(<Header openDrawer={handleClick} />);
     const buttonElement = screen.getByTestId("searchBar");
     fireEvent.click(buttonElement);
     expect(handleClick).toHaveBeenCalledTimes(1);

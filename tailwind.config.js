@@ -24,6 +24,10 @@ module.exports = {
       },
       fontSize: {
         xxs: ".625rem",
+        xxxs: ".563rem",
+      },
+      boxShadow: {
+        default: "0px 1px 6px rgba(0, 0, 0, 0.1)",
       },
     },
   },

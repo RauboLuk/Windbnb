@@ -1,24 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import PropertyCard from "./PropertyCard";
+import locations from "../assets/data/stays.json";
 
-const location = {
-  city: "Helsinki",
-  country: "Finland",
-  superHost: false,
-  title: "Stylist apartment in center of the city",
-  rating: 4.4,
-  maxGuests: 3,
-  type: "Entire apartment",
-  beds: null,
-  photo:
-    "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=2255&q=80",
-};
+const location = { ...locations[0], beds: null };
 
 describe("Property card", () => {
   test("there is a picture", () => {
     render(<PropertyCard location={location} />);
     const propertyElement = screen.getByTestId("img");
-    expect(propertyElement).toHaveAttribute('src', location.photo);
+    expect(propertyElement).toHaveAttribute("src", location.photo);
   });
   test("there is an alt to a picture", () => {
     render(<PropertyCard location={location} />);
@@ -57,16 +47,12 @@ describe("Property card", () => {
   });
   test("there is a type with beds", () => {
     render(<PropertyCard location={{ ...location, beds: 2 }} />);
-    const propertyElement = screen.getByText(
-      `${location.type} . 2 beds`
-    );
+    const propertyElement = screen.getByText(`${location.type} . 2 beds`);
     expect(propertyElement).toBeInTheDocument();
   });
   test("there is a correct plural for one bed", () => {
     render(<PropertyCard location={{ ...location, beds: 1 }} />);
-    const propertyElement = screen.getByText(
-      `${location.type} . 1 bed`
-    );
+    const propertyElement = screen.getByText(`${location.type} . 1 bed`);
     expect(propertyElement).toBeInTheDocument();
   });
 });
