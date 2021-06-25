@@ -1,6 +1,11 @@
 import RoomIcon from "@material-ui/icons/Room";
 
-const LocationSelect = ({ hidden, locations, setSelectedLocation }) => {
+import { useDispatch } from "react-redux";
+import { setLocation } from "../slices/locationSlice";
+
+const LocationSelect = ({ hidden, locations }) => {
+  const dispatch = useDispatch();
+
   const uniqueLocations = [
     ...new Set(locations?.map((loc) => `${loc.city}, ${loc.country}`)),
   ].map((loc) => ({
@@ -10,7 +15,7 @@ const LocationSelect = ({ hidden, locations, setSelectedLocation }) => {
 
   const handleLocationChange = (e, location) => {
     e.preventDefault();
-    setSelectedLocation(location);
+    dispatch(setLocation(location));
   };
 
   return (

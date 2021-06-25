@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import guestsSlice from "./slices/guestsSlice";
+import guestsReducer from "./slices/guestsSlice";
+import locationReducer from "./slices/locationSlice";
 
 export default configureStore({
   reducer: {
-    guests: guestsSlice,
+    guests: guestsReducer,
+    location: locationReducer,
   },
 });

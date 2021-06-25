@@ -1,23 +1,22 @@
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
 import { useState } from "react";
+
+import { useSelector } from "react-redux";
+import { selectGuestsSum } from "../slices/guestsSlice";
+import { selectLocation } from "../slices/locationSlice";
+
 import GuestsSelect from "./GuestsSelect";
 import LocationSelect from "./LocationSelect";
 
-const FilterDrawer = ({
-  isModalOpen,
-  setIsModalOpen,
-  locations,
-  selectedLocation,
-  setSelectedLocation,
-  guests,
-  setGuests,
-}) => {
+const FilterDrawer = ({ isModalOpen, setIsModalOpen, locations }) => {
   const [isGuestsSelectVisible, setIsGuestsSelectVisible] = useState(false);
   const [isLocationSelectVisible, setIsLocationSelectVisible] = useState(false);
 
+  const guestsCount = useSelector(selectGuestsSum);
+  const selectedLocation = useSelector(selectLocation);
+
   if (!isModalOpen) return null;
-  const guestsCount = guests?.adults + guests?.children;
 
   const openLocationSelect = () => {
     setIsGuestsSelectVisible(false);
@@ -99,15 +98,11 @@ const FilterDrawer = ({
           <LocationSelect
             hidden={isLocationSelectVisible}
             locations={locations}
-            setSelectedLocation={setSelectedLocation}
           />
 
           {/* GUESTS SELECT */}
           <div className="md:flex-1 md:mx-16">
-            <GuestsSelect
-              hidden={isGuestsSelectVisible}
-              setGuests={setGuests}
-            />
+            <GuestsSelect hidden={isGuestsSelectVisible} />
           </div>
 
           <div className="hidden md:block md:flex-1"></div>

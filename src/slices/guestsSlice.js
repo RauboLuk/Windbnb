@@ -30,3 +30,6 @@ export const {
 } = guestsSlice.actions;
 
 export default guestsSlice.reducer;
+
+export const selectGuestsSum = (state) =>
+  state.guests.adults + state.guests.children;

@@ -1,35 +1,31 @@
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { useEffect } from "react";
-import { useState } from "react";
 
-const GuestsSelect = ({ hidden, setGuests }) => {
-  const [adults, setAdults] = useState(0);
-  const [children, setChildren] = useState(0);
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementAdult,
+  decrementAdult,
+  incrementChildren,
+  decrementChildren,
+} from "../slices/guestsSlice";
 
-  // TODO fix reseting
-  useEffect(() => {
-    setGuests({
-      adults,
-      children,
-    });
-  }, [adults, children, setGuests]);
+const GuestsSelect = ({ hidden }) => {
+  const adults = useSelector((state) => state.guests.adults);
+  const children = useSelector((state) => state.guests.children);
+
+  const dispatch = useDispatch();
 
   const incAdults = () => {
-    const newState = adults + 1;
-    setAdults(newState);
+    dispatch(incrementAdult());
   };
   const decAdults = () => {
-    const newState = adults - 1;
-    setAdults(newState);
+    dispatch(decrementAdult());
   };
   const incChildren = () => {
-    const newState = children + 1;
-    setChildren(newState);
+    dispatch(incrementChildren());
   };
   const decChildren = () => {
-    const newState = children - 1;
-    setChildren(newState);
+    dispatch(decrementChildren());
   };
 
   return (

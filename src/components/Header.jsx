@@ -1,8 +1,14 @@
 import Logo from "../assets/images/logo.svg";
 import SearchIcon from "@material-ui/icons/Search";
 
-const Header = ({ selectedLocation, guests, setIsModalOpen }) => {
-  const guestsCount = guests?.adults + guests?.children;
+import { useSelector } from "react-redux";
+import { selectGuestsSum } from "../slices/guestsSlice";
+import { selectLocation } from "../slices/locationSlice";
+
+const Header = ({ setIsModalOpen }) => {
+  const guestsCount = useSelector(selectGuestsSum);
+  const selectedLocation = useSelector(selectLocation);
+
   return (
     <header className="font-mulish font-normal text-sm grid gap-5 md:grid-cols-2 md:items-center md:mt-8">
       <img src={Logo} alt="logo" className="my-5 md:m-0" />
