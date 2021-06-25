@@ -9,7 +9,7 @@ import { selectLocation } from "../slices/locationSlice";
 import GuestsSelect from "./GuestsSelect";
 import LocationSelect from "./LocationSelect";
 
-const FilterDrawer = ({ isModalOpen, setIsModalOpen, locations }) => {
+const FilterDrawer = ({ isModalOpen, setIsModalOpen }) => {
   const [isGuestsSelectVisible, setIsGuestsSelectVisible] = useState(false);
   const [isLocationSelectVisible, setIsLocationSelectVisible] = useState(false);
 
@@ -95,10 +95,7 @@ const FilterDrawer = ({ isModalOpen, setIsModalOpen, locations }) => {
             }`}
           ></div>
           {/* LOCATION SELECT */}
-          <LocationSelect
-            hidden={isLocationSelectVisible}
-            locations={locations}
-          />
+          <LocationSelect hidden={isLocationSelectVisible} />
 
           {/* GUESTS SELECT */}
           <div className="md:flex-1 md:mx-16">

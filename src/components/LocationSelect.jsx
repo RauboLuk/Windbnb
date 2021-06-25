@@ -1,13 +1,15 @@
 import RoomIcon from "@material-ui/icons/Room";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../slices/locationSlice";
+import { selectStays } from "../slices/staysSlice";
 
-const LocationSelect = ({ hidden, locations }) => {
+const LocationSelect = ({ hidden }) => {
+  const stays = useSelector(selectStays);
   const dispatch = useDispatch();
 
   const uniqueLocations = [
-    ...new Set(locations?.map((loc) => `${loc.city}, ${loc.country}`)),
+    ...new Set(stays?.map((loc) => `${loc.city}, ${loc.country}`)),
   ].map((loc) => ({
     city: loc.split(", ")[0],
     country: loc.split(", ")[1],

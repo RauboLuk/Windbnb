@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import { selectCountry } from "../slices/locationSlice";
+import { selectFilteredStaysCount } from "../slices/staysSlice";
 
-const Stays = ({ stays = 0 }) => {
+const Stays = () => {
   const selectedCountry = useSelector(selectCountry);
+  const staysCount = useSelector(selectFilteredStaysCount);
 
   return (
     <section className="mt-9 flex justify-between font-montserrat items-center">
@@ -10,7 +12,7 @@ const Stays = ({ stays = 0 }) => {
         Stays in {selectedCountry}
       </div>
       <div className="text-gray-dark text-sm font-medium">
-        {stays} {String(stays) === "1" ? "stay" : "stays"}
+        {staysCount} {String(staysCount) === "1" ? "stay" : "stays"}
       </div>
     </section>
   );
