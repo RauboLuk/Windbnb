@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const locationSlice = createSlice({
   name: "location",
   initialState: {
-    city: "Helsinki",
-    country: "Finland",
+    city: "",
+    country: "",
   },
   reducers: {
     setLocation: (state, action) => {

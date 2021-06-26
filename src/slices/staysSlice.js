@@ -22,13 +22,16 @@ export const selectFilteredStays = createSelector(
   selectStays,
   selectLocation,
   selectGuestsSum,
-  (stays, selectedLocation, guestsCount) =>
-    stays?.filter(
+  (stays, selectedLocation, guestsCount) => {
+    if (selectedLocation.city === "" || selectedLocation.country === "")
+      return stays;
+    return stays?.filter(
       (location) =>
         location.city === selectedLocation.city &&
         location.country === selectedLocation.country &&
         location.maxGuests >= guestsCount
-    )
+    );
+  }
 );
 
 export const selectFilteredStaysCount = createSelector(

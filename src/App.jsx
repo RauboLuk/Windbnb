@@ -16,6 +16,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(setStays(data));
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -24,11 +25,7 @@ const App = () => {
       <Stays />
       <PropertiesList />
       <Footer />
-      <FilterDrawer
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        locations={data}
-      />
+      <FilterDrawer isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };
