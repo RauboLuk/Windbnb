@@ -18,7 +18,11 @@ const Header = ({ setIsModalOpen }) => {
         className="min-w-min w-full mx-3 h-14 flex flex-row items-center rounded-2xl shadow-default md:mx-0 md:max-w-md md:justify-self-end"
       >
         <button className="w-6/12 h-full px-3 placeholder-gray-light text-gray-darkest text-left">
-          {`${selectedLocation.city}, ${selectedLocation.country}`}
+          {selectedLocation.city === "" || selectedLocation.country === "" ? (
+            <span className="text-gray-light">Add location</span>
+          ) : (
+            `${selectedLocation.city}, ${selectedLocation.country}`
+          )}
         </button>
         <div className="h-full border-r border-white-milk"></div>
         <button
