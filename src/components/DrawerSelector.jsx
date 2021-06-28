@@ -4,11 +4,13 @@ const DrawerSelector = ({
   text,
   placeholder,
   showPlaceholder,
+  ...other
 }) => {
   return (
     <button
       onClick={onClick}
       className="px-6 py-3 w-full text-left rounded-2xl md:flex-1"
+      {...other}
     >
       <p className="text-xxxs font-extrabold uppercase">{label}</p>
       <p className="text-sm font-normal mt-1">

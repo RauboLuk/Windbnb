@@ -9,7 +9,7 @@ import {
   decrementChildren,
 } from "../slices/guestsSlice";
 
-const GuestsSelect = ({ hidden }) => {
+const GuestsSelect = ({ hidden, ...other }) => {
   const adults = useSelector((state) => state.guests.adults);
   const children = useSelector((state) => state.guests.children);
 
@@ -32,6 +32,7 @@ const GuestsSelect = ({ hidden }) => {
     <section
       className="mx-4 font-mulish font-bold text-sm text-gray-darkest"
       hidden={!hidden}
+      {...other}
     >
       <div className="mt-4">
         <div>Adults</div>

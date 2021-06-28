@@ -50,6 +50,7 @@ const FilterDrawer = ({ isModalOpen, setIsModalOpen }) => {
             text={`${selectedLocation.city}, ${selectedLocation.country}`}
             placeholder="Add location"
             showPlaceholder={selectedLocation.city.length < 1}
+            data-testid="locationSelector"
           />
           <div className="w-full border-t border-white-milk md:h-auto md:w-auto md:border-t-0 md:border-r"></div>
           <DrawerSelector
@@ -58,6 +59,7 @@ const FilterDrawer = ({ isModalOpen, setIsModalOpen }) => {
             text={`${guestsCount} guest${guestsCount !== 1 ? "s" : ""}`}
             placeholder="Add guests"
             showPlaceholder={guestsCount < 1}
+            data-testid="guestsSelector"
           />
           <div className="h-auto border-r border-white-milk hidden md:block"></div>
 
@@ -79,10 +81,16 @@ const FilterDrawer = ({ isModalOpen, setIsModalOpen }) => {
               isGuestsSelectVisible ? "md:block" : null
             }`}
           ></div>
-          <LocationSelect hidden={isLocationSelectVisible} />
+          <LocationSelect
+            hidden={isLocationSelectVisible}
+            data-testid="locationSelect"
+          />
 
           <div className="md:flex-1 md:mx-16">
-            <GuestsSelect hidden={isGuestsSelectVisible} />
+            <GuestsSelect
+              hidden={isGuestsSelectVisible}
+              data-testid="guestsSelect"
+            />
           </div>
 
           <div className="hidden md:block md:flex-1"></div>

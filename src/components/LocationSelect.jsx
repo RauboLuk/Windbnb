@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../slices/locationSlice";
 import { selectStays } from "../slices/staysSlice";
 
-const LocationSelect = ({ hidden }) => {
+const LocationSelect = ({ hidden, ...other }) => {
   const stays = useSelector(selectStays);
   const dispatch = useDispatch();
 
@@ -21,7 +21,11 @@ const LocationSelect = ({ hidden }) => {
   };
 
   return (
-    <section className="text-gray-dark text-sm font-normal" hidden={!hidden}>
+    <section
+      className="text-gray-dark text-sm font-normal"
+      hidden={!hidden}
+      {...other}
+    >
       {uniqueLocations?.map((loc, i) => {
         return (
           <button
