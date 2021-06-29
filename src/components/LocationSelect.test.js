@@ -1,7 +1,7 @@
 import { render, screen } from "../test-utils";
 import LocationSelect from "./LocationSelect";
 
-const locations = [
+const stays = [
   {
     city: "Helsinki",
     country: "Finland",
@@ -14,25 +14,37 @@ const locations = [
 
 describe("Locations select", () => {
   test("there is a location name", () => {
-    render(<LocationSelect />);
+    render(<LocationSelect />, {
+      preloadedState: {
+        stays,
+      },
+    });
     const selectElement = screen.queryByText(
-      `${locations[0].city}, ${locations[0].country}`
+      `${stays[0].city}, ${stays[0].country}`
     );
     expect(selectElement).toBeInTheDocument();
   });
   test("there can be more than one location", () => {
-    render(<LocationSelect />);
+    render(<LocationSelect />, {
+      preloadedState: {
+        stays,
+      },
+    });
     const select1Element = screen.queryByText(
-      `${locations[0].city}, ${locations[0].country}`
+      `${stays[0].city}, ${stays[0].country}`
     );
     expect(select1Element).toBeInTheDocument();
     const select2Element = screen.queryByText(
-      `${locations[1].city}, ${locations[1].country}`
+      `${stays[1].city}, ${stays[1].country}`
     );
     expect(select2Element).toBeInTheDocument();
   });
   test("there is a location icon", () => {
-    render(<LocationSelect />);
+    render(<LocationSelect />, {
+      preloadedState: {
+        stays,
+      },
+    });
     const selectElement = screen.queryAllByTestId("locationIcon");
     expect(selectElement[0]).toBeInTheDocument();
   });
