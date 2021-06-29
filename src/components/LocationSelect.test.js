@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../test-utils";
 import LocationSelect from "./LocationSelect";
 
 const locations = [
@@ -14,14 +14,14 @@ const locations = [
 
 describe("Locations select", () => {
   test("there is a location name", () => {
-    render(<LocationSelect locations={locations} />);
+    render(<LocationSelect />);
     const selectElement = screen.queryByText(
       `${locations[0].city}, ${locations[0].country}`
     );
     expect(selectElement).toBeInTheDocument();
   });
   test("there can be more than one location", () => {
-    render(<LocationSelect locations={locations} />);
+    render(<LocationSelect />);
     const select1Element = screen.queryByText(
       `${locations[0].city}, ${locations[0].country}`
     );
@@ -32,7 +32,7 @@ describe("Locations select", () => {
     expect(select2Element).toBeInTheDocument();
   });
   test("there is a location icon", () => {
-    render(<LocationSelect locations={locations} />);
+    render(<LocationSelect />);
     const selectElement = screen.queryAllByTestId("locationIcon");
     expect(selectElement[0]).toBeInTheDocument();
   });

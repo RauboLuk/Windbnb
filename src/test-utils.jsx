@@ -17,6 +17,7 @@ function render(
         location: locationReducer,
         stays: staysReducer,
       },
+      preloadedState,
     }),
     ...renderOptions
   } = {}

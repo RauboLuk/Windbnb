@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../test-utils";
 import PropertyCard from "./PropertyCard";
 import locations from "../assets/data/stays.json";
 
