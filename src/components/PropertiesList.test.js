@@ -4,7 +4,11 @@ import locations from "../assets/data/stays.json";
 
 describe("Properties list", () => {
   test("it renders properties based on the number of locations", () => {
-    render(<PropertiesList />);
+    render(<PropertiesList />, {
+      preloadedState: {
+        stays: locations,
+      },
+    });
     const propertiesList = screen.getByTestId("propertiesList");
     expect(propertiesList.childNodes.length).toEqual(locations.length);
   });
