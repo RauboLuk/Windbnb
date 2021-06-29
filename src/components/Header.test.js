@@ -6,47 +6,52 @@ const guests = { adults: 2, children: 1 };
 
 describe("header", () => {
   test("there is a logo", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />);
     const logoElement = screen.getByAltText("logo");
     expect(logoElement).toBeInTheDocument();
   });
   test("there is a search bar", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />);
     const searchBarElement = screen.getByTestId("searchBar");
     expect(searchBarElement).toBeInTheDocument();
   });
   test("there is a search bar that contains selected location", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />, {
+      preloadedState: {
+        location,
+      },
+    });
     const locationElement = screen.getByText(
       `${location.city}, ${location.country}`
     );
     expect(locationElement).toBeInTheDocument();
   });
   test("there is a search bar that contains guests placeholder if there are no guests", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />);
     const guestsElement = screen.getByText("Add guests");
     expect(guestsElement).toBeInTheDocument();
   });
   test("there is a search bar that contains guests count", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />, {
+      preloadedState: {
+        guests,
+      },
+    });
     const guestsElement = screen.getByText("3 guests");
     expect(guestsElement).toBeInTheDocument();
   });
   test("there is a correct singular for guests count", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />, {
+      preloadedState: {
+        guests: { adults: 0, children: 1 },
+      },
+    });
     const guestsElement = screen.getByText("1 guest");
     expect(guestsElement).toBeInTheDocument();
   });
 
   test("there is a search icon", () => {
-    const handleClick = jest.fn();
-    render(<Header setIsModalOpen={handleClick} />);
+    render(<Header />);
     const buttonElement = screen.getByTestId("searchIcon");
     expect(buttonElement).toBeInTheDocument();
   });
