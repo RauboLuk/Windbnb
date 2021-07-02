@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import data from "./assets/data/stays.json";
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-import { useDispatch } from "react-redux";
-import { setStays } from "./slices/staysSlice";
+import { useEffect, useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchStays, selectStatus } from "./slices/staysSlice";
 
 import FilterDrawer from "./components/FilterDrawer";
 import Footer from "./components/Footer";
@@ -13,11 +14,14 @@ import Stays from "./components/Stays";
 const App = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
-    dispatch(setStays(data));
+    dispatch(fetchStays());
     // eslint-disable-next-line
   }, []);
+
+  if (["loading", "idle"].includes(status)) return <LinearProgress />;
 
   return (
     <div className="px-5 m-auto max-w-screen-xl">
